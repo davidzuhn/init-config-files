@@ -1,0 +1,55 @@
+alias mvn=mvn3
+
+alias ack=ack-5.16
+
+alias diff="diff -u"
+alias c=clear
+alias clean='rm -f *~ .??*~'
+alias cp="cp -i"
+alias df="df -PH"
+alias du="du -h"
+alias f=finger
+alias ftp="ncftp"
+alias gdb="gdb -q"
+alias grep="grep -d skip"
+alias h=history
+alias j=jobs
+alias ldot="ls -d .??*"
+
+alias ll='ls -lh'
+alias ls='ls -CFG'
+
+alias m=more
+alias make="make -w"
+alias more=less
+alias mv="mv -i"
+alias pd=pushd
+alias t="tail -40"
+alias tail-f="tail -f"
+alias up=uptime
+alias w="w | sort"
+alias who="who | sort"
+
+if [ "$EUID" = "0" ] || [ "$UID" = "0" ] ; then
+  alias ll='ls -Alh' 2>/dev/null
+  alias l.='ls -d .*' 2>/dev/null
+
+  alias ls="ls -ACFBk"
+fi
+
+
+BRIDGE="$HOME/lib/stacks/Adobe/Bridge"
+if [ -e "$BRIDGE" ]
+then
+  alias bridge="open -a '$BRIDGE'"
+fi
+
+PHOTOSHOP="$HOME/lib/stacks/Adobe/Photoshop"
+if [ -e "$PHOTOSHOP" ]
+then
+  alias photoshop="open -a '$PHOTOSHOP'"
+fi
+
+alias ovftool="/Applications/VMware\ OVF\ Tool/ovftool"
+
+

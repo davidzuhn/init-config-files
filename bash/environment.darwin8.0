@@ -1,0 +1,7 @@
+# for fink, on mac
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+PATHDIRS="/Library/Frameworks/GDAL.framework/unix/bin:/sw/bin:/sw/sbin:/Applications/xampp/xamppfiles/bin /Applications/xampp/xamppfiles/sbin"
+
+
+

@@ -1,0 +1,4 @@
+# General Mac specific things go here
+
+# support Fink initialization (probably not around anymore on any system I run)
+[ -r /sw/bin/init.sh ] && . /sw/bin/init.sh

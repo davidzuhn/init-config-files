@@ -1,0 +1,50 @@
+__git_color() 
+{
+  local c1=""
+  local -i c2=0
+
+  # check that we're in a repository
+  if git rev-parse --git-dir >/dev/null 2>&1
+  then
+    c1='1'
+    c2=30
+
+    # check for unstaged changes
+    if git diff --no-ext-diff --quiet --exit-code
+    then
+      # no unstaged changes, check for staged changes
+      if git rev-parse--quiet --verify HEAD >dev/null
+      then
+        git diff-index --cached --quiet HEAD -- || c2+=3
+      else
+        c2 += 3 # no commits to HEAD
+      fi
+    else
+      c2 += 1 # unstaged changes exist
+    fi
+
+    # check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard)" ]
+    then
+      c2 += 4 # untracked files exist
+    fi
+
+    # check for stashes
+    git-rev-parse --verify refs/stash >/dev/null 2>&1 && c1='4;'
+    
+    # make sure that clean repos and staged + untracked have correct sequences
+    if [ 30 -eq $c2 ]
+    then
+      c2=32  # clear status, make it green
+    elif [ 37 -eq $c2 ]
+    then
+      c2=36 # untracked + staged, want cyan not gray
+    fi
+
+    local color_change="\033[${c1}${c2}m"
+    printf "%b" "${color_change}"   # %b because we have an escape sequence
+
+  else
+    printf ""  # print an empty string
+  fi
+}

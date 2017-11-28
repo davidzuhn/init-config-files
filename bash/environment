@@ -1,0 +1,88 @@
+# bash variables
+auto_resume=1
+no_exit_on_failed_exec=1
+
+
+export P4CONFIG=.p4config
+
+# environment variables
+#
+export LESS=adeij1mQsXR
+export LESSCHARSET=latin1
+export LESSBINFMT="*d[%x]"
+
+if [ -x /usr/libexec/java_home ]
+then
+  export JAVA_HOME=`/usr/libexec/java_home`
+fi
+
+export MANOPTS="--nj"
+
+export SVN_EDITOR=vi
+
+export LC_ALL="en_US.UTF-8"
+
+export PAGER=less
+export TZ=CST6CDT
+#
+export MPAGE=-2onuP
+
+HISTFILESIZE=10000
+HISTCONTROL=ignoredups:erasedups
+HISTIGNORE="cd:cd ..:df:df .:du:du -sh:DUSH:fg:ls:ll:history:sudo:sudo -s:exit:emacs:w:pwd"
+
+umask 022
+
+DIRS="$HOME/bin/scripts $HOME/bin $HOME/bin/$OSTYPE $HOME/sw/bin \
+      /opt/local/libexec/gnubin /opt/local/bin /opt/local/sbin \
+      $PATHDIRS $JAVA_HOME/bin \
+      $ANT_HOME/bin $GDAL_BIN \
+      $MYSQL/bin /usr/local/bin /usr/local/sbin \
+      /usr/bin /bin /usr/sbin /sbin /usr/games"
+
+NEWPATH=
+OLDIFS=$IFS
+IFS=":$IFS"
+for dir in $DIRS ; do
+  if [ -d $dir ]; then
+    NEWPATH=${NEWPATH}:$dir
+  fi
+done
+IFS=$OLDIFS
+
+NEWPATH=`echo $NEWPATH: | sed 's/^://;s/:*$//'`
+
+PATH=$NEWPATH
+export PATH
+
+
+MANPATH=$HOME/lib/man:$HOME/sw/man:$MANPATH
+
+ignoreeof=1000
+
+export CVS_RSH=ssh
+
+
+FIGNORE=".svn:CVS:.o:~: DB: DF:.DS_Store"
+
+unset JAVA_BIN
+unset MAILPATH
+unset MAILCHECK
+
+
+set -o ignoreeof
+
+shopt -s cdspell cmdhist checkwinsize lithist no_empty_cmd_completion extglob
+shopt -u mailwarn
+
+MYSQLDIR=/usr/local/mysql-5.6.27-osx10.8-x86_64
+if [ -d "$MYSQLDIR/lib" ]
+then
+    export DYLD_LIBRARY_PATH=$MYSQLDIR/lib:$DYLD_LIBRARY_PATH
+fi
+
+
+export P4DIFF="diff -u"
+
+export P4PORT=ssl:perforce.csdt.sjm.com:1666
+

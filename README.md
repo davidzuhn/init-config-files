@@ -1,2 +1,2 @@
 # init-config-files
-Shell/Emacs/etc. config files
+shell/emacs/etc. config files

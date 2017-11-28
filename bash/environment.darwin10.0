@@ -1,0 +1,15 @@
+# for fink, on mac
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+ANT_HOME=$HOME/Programming/ant/apache-ant-1.8.0
+if [ -d "$ANT_HOME" ] 
+then
+  export ANT_HOME
+fi
+
+
+
+MYSQL=/usr/local/mysql
+

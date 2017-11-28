@@ -1,0 +1,26 @@
+#
+# functions that I will use often in bash
+#
+
+pwf ()
+{
+  if [ $# = 1 ] ; then
+    if [ -d $1 ]; then
+      (cd $1 ; echo "file://`builtin pwd`")
+    else
+      (d=`dirname $1`; b=`basename $1`; cd $d ;   echo "file://`builtin pwd`/$b")
+    fi
+  else
+    echo "file://`builtin pwd`/$1"
+  fi
+}
+
+
+pwd ()
+{
+  if [ $# = 1 ] ; then
+    (cd $1 ; builtin pwd)
+  else
+     builtin pwd
+  fi
+}

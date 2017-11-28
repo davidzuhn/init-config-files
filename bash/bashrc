@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# .bashrc
+
+set -x
+
+BASHLIBDIR=$HOME/src/init-config-files/bash
+
+source_files()
+{
+  name=$1
+
+
+  # remove version numbers from OSTYPE (e.g., darwin11.0 => darwin)
+  BASEOSTYPE=$(echo ${OSTYPE} | sed 's/[0-9][0-9.]*$//')
+
+  DOMAIN=$(domainname)
+
+  if [ "${OSTYPE}" != "${BASEOSTYPE}" ]
+  then
+    suffixes=("${OSTYPE}" "${BASEOSTYPE}" "${HOSTNAME}" "${DOMAIN}" "none")
+  else
+    suffixes=("${OSTYPE}" "${HOSTNAME}" "${DOMAIN}" "none")
+  fi
+
+  for suffix in ${suffixes[*]}
+  do
+      [ -n "$ZOO_DEBUG" ] && echo "checking for suffix '$suffix'"
+      [ "$suffix" = "none" ] && suffix=""
+      [ -n "${suffix}" ] && suffix=".${suffix}"
+      file="${BASHLIBDIR}/${name}${suffix}"
+      if [ -r "${file}" ]
+      then
+        [ -n "$ZOO_DEBUG" ] && echo "sourcing file ${file} for suffix '${suffix}'"
+        source "${file}"
+      fi
+  done
+}
+
+# I want to keep this value around
+export SYSTEM_DEFAULT_PATH=${SYSTEM_DEFAULT_PATH-$PATH}
+
+
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+source_files environment
+
+# bash-completion
+
+if [ -f ${BASHLIBDIR}/git-completion.bash ]; then
+    . ${BASHLIBDIR}/git-completion.bash
+fi
+
+if [ -f ${BASHLIBDIR}/git-prompt.sh ]; then
+    . ${BASHLIBDIR}/git-prompt.sh
+fi
+
+unset bash bminor bmajor
+
+if [ "$PS1" = "" ]; then
+  interactive=0
+else
+  source_files functions
+  source_files aliases
+
+  if [ "$TERM" = "emacs" ]; then
+    PS1="% "
+  else
+    case "${BASH_VERSION}" in
+      *) PS1='\H \t [\W$(__git_ps1 " (%s)")] ' ;;
+    esac
+  fi
+
+  if [ "$EUID" = "0" ] || [ "$UID" = "0" ] ; then
+    PS1="\t embarcadero [\W] # "
+    HISTFILE=
+  fi
+fi
+
+
+if [ "$TERM" = "eterm" ]; then
+  PROMPT_COMMAND='echo "/${PWD}"'
+fi
+
+
+#Make sure all terminals save history
+shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+#Increase history size
+export HISTSIZE=1000
+export HISTFILESIZE=1000

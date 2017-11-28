@@ -1,0 +1,2 @@
+alias ll='ls -lh --color=tty' 2>/dev/null
+alias ls="ls --color=tty -CFBk --ignore=#.\*# --ignore=\*.{elc,pag,dir}"
