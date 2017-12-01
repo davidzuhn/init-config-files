@@ -69,7 +69,7 @@ else
     PS1="% "
   else
     case "${BASH_VERSION}" in
-      *) PS1='\H \t [\W$(__git_ps1 " (%s)")] ' ;;
+      *) PS1='\h \t [\W$(__git_ps1 " (%s)")] ' ;;
     esac
   fi
 
