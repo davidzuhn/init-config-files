@@ -17,7 +17,7 @@ alias j=jobs
 alias ldot="ls -d .??*"
 
 alias ll='ls -lh'
-alias ls='ls -CFG'
+alias ls='ls -CFG --hide=\$*'
 
 alias m=more
 alias make="make -w"
@@ -51,5 +51,3 @@ then
 fi
 
 alias ovftool="/Applications/VMware\ OVF\ Tool/ovftool"
-
-
