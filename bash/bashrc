@@ -2,8 +2,6 @@
 
 # .bashrc
 
-set -x
-
 BASHLIBDIR=$HOME/src/init-config-files/bash
 
 source_files()
