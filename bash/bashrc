@@ -12,13 +12,11 @@ source_files()
   # remove version numbers from OSTYPE (e.g., darwin11.0 => darwin)
   BASEOSTYPE=$(echo ${OSTYPE} | sed 's/[0-9][0-9.]*$//')
 
-  DOMAIN=$(domainname)
-
   if [ "${OSTYPE}" != "${BASEOSTYPE}" ]
   then
-    suffixes=("${OSTYPE}" "${BASEOSTYPE}" "${HOSTNAME}" "${DOMAIN}" "none")
+    suffixes=("${OSTYPE}" "${BASEOSTYPE}" "${HOSTNAME}" "none")
   else
-    suffixes=("${OSTYPE}" "${HOSTNAME}" "${DOMAIN}" "none")
+    suffixes=("${OSTYPE}" "${HOSTNAME}" "none")
   fi
 
   for suffix in ${suffixes[*]}
@@ -74,7 +72,7 @@ else
   fi
 
   if [ "$EUID" = "0" ] || [ "$UID" = "0" ] ; then
-    PS1="\t embarcadero [\W] # "
+    PS1="\u@\h \t [\W] # "
     HISTFILE=
   fi
 fi

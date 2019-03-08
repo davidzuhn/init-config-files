@@ -19,6 +19,7 @@
   (if (not (fboundp mode))
       (autoload mode filename comment t)))
 
+(setq auto-mode-alist (cons '("\\.g4$" . antlr-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.l$" . text-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.y$" . text-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("[Mm]akefile" . makefile-mode) auto-mode-alist))
@@ -162,7 +163,7 @@
     (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
                                    (substatement-open . 0)
                                    (case-label        . 4)
-				   (comment-intro     . -4)
+				   (comment-intro     . 0)
                                    (block-open        . 0)
                                    (knr-argdecl-intro . -)))
     (c-echo-syntactic-information-p . t))
@@ -178,7 +179,7 @@
   (setq tab-width 8
         ;; this will make sure spaces are used instead of tabs
         indent-tabs-mode nil
-	c-basic-offset 2)
+	c-basic-offset 4)
   ;; we like auto-newline, but not hungry-delete
   )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)

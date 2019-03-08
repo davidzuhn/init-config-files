@@ -34,10 +34,11 @@ HISTIGNORE="cd:cd ..:df:df .:du:du -sh:DUSH:fg:ls:ll:history:sudo:sudo -s:exit:e
 umask 022
 
 DIRS="$HOME/bin/scripts $HOME/bin $HOME/bin/$OSTYPE $HOME/sw/bin \
+      /usr/local/opt/coreutils/libexec/gnubin \
       /opt/local/libexec/gnubin /opt/local/bin /opt/local/sbin \
       $PATHDIRS $JAVA_HOME/bin \
-      $ANT_HOME/bin $GDAL_BIN \
-      $MYSQL/bin /usr/local/bin /usr/local/sbin \
+      $GDAL_BIN \
+      /usr/local/bin /usr/local/sbin \
       /usr/bin /bin /usr/sbin /sbin /usr/games"
 
 NEWPATH=
@@ -56,7 +57,7 @@ PATH=$NEWPATH
 export PATH
 
 
-MANPATH=$HOME/lib/man:$HOME/sw/man:$MANPATH
+MANPATH=$HOME/lib/man:$HOME/sw/man:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
 ignoreeof=1000
 
@@ -75,14 +76,6 @@ set -o ignoreeof
 shopt -s cdspell cmdhist checkwinsize lithist no_empty_cmd_completion extglob
 shopt -u mailwarn
 
-MYSQLDIR=/usr/local/mysql-5.6.27-osx10.8-x86_64
-if [ -d "$MYSQLDIR/lib" ]
-then
-    export DYLD_LIBRARY_PATH=$MYSQLDIR/lib:$DYLD_LIBRARY_PATH
-fi
-
-
 export P4DIFF="diff -u"
 
 export P4PORT=ssl:perforce.csdt.sjm.com:1666
-

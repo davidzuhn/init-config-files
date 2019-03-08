@@ -20,7 +20,7 @@ alias ll='ls -lh'
 alias ls='ls -CFG --hide=\$*'
 
 alias m=more
-alias make="make -w"
+alias make="make -w -j8"
 alias more=less
 alias mv="mv -i"
 alias pd=pushd

@@ -7,10 +7,13 @@
     (setq original-load-path load-path))
 
 (setq my-load-paths (list
-		     (expand-file-name "~/lib/emacs")
+		     (expand-file-name "~/src/init-config-files/emacs")
 		     ))
 
 (setq load-path (append my-load-paths original-load-path ))
+
+(add-to-list 'exec-path "/usr/local/opt/coreutils/libexec/gnubin")
+
 
 (setq debug-on-error t)
 
@@ -30,7 +33,7 @@
 ;;;; XEmacs specific code
 ;(load-library "zoo-xemacs")
 
-;(load-library "zoo-aquamacs")
+(load-library "zoo-mac")
 
 ;;;; configure third-party packages that I used all of the time
 (load-library "zoo-packages")
@@ -44,8 +47,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-basic-offset 2))
-
-
+ '(c-basic-offset 2)
+ '(display-time-mode t))
 
 (setq debug-on-error nil)
