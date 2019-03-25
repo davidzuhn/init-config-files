@@ -17,7 +17,7 @@ alias j=jobs
 alias ldot="ls -d .??*"
 
 alias ll='ls -lh'
-alias ls='ls -CFG --hide=\$*'
+alias ls='ls -hCBFG --hide=\$*'
 
 alias m=more
 alias make="make -w -j8"
