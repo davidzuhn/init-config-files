@@ -34,6 +34,8 @@ HISTIGNORE="cd:cd ..:df:df .:du:du -sh:DUSH:fg:ls:ll:history:sudo:sudo -s:exit:e
 umask 022
 
 DIRS="$HOME/bin/scripts $HOME/bin $HOME/bin/$OSTYPE $HOME/sw/bin \
+      /Applications/ARM/bin \
+      /Applications/SEGGER/JLink \
       /usr/local/opt/coreutils/libexec/gnubin \
       /opt/local/libexec/gnubin /opt/local/bin /opt/local/sbin \
       $PATHDIRS $JAVA_HOME/bin \
